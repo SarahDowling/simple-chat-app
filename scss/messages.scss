@@ -1,0 +1,10 @@
+@import 'colors';
+
+.message {
+  line-height: 16em;
+  font-size: 0.5em;
+
+  &:nth-child(even) {
+    background: $primary;
+  }
+}
