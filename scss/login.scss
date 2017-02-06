@@ -1,0 +1,27 @@
+@import 'colors';
+@import 'layers';
+// import different than include
+
+.center {
+  width: 100vw;
+  height: 100vw;
+  z-index: $middle;
+
+  background: shade($primary, 0.6);
+  // background tint gives opposite, lighter or darker
+
+  @include position(fixed);
+
+  @include display(flex);
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(center);
+
+  top: 0;
+  left: 0;
+}
+
+.login-button {
+  @include position(absolute);
+  z-index: $top;
+}
