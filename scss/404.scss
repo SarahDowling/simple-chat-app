@@ -22,6 +22,7 @@ html {
   width: 100vw;
   height: 200vh;
   @include center();
+  @include position(absolute);
 }
 
 .dove {
