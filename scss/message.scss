@@ -2,6 +2,44 @@
 
 
 .message {
-	font-size: 4em;
+	font-size: 1em;
 	line-height: 0.5em;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.username-size {
+	font-size: 1.2em;
+}
+
+.message-container {
+	width: 80vw;
+	height: 5vh;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+.message {
+	padding-top: 2em;
+}
+
+.message-button {
+	width: 8.5vw;
+	height: 5vh;
+	border: none;
+	background-color: $red;
+	color: white;
+	padding: 0em;
+
+	a {
+	 text-decoration: none;
+ }
+
+ &:hover {
+	 background-color: $secondary;
+ }
 }
