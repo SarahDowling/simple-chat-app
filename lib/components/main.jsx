@@ -133,106 +133,110 @@ class MainScreen extends React.Component {
         const { messages, notifications, users } = this.state;
 
         return (
-          <main className="chat-app">
-            <button className={[ 'user-list-button', !this.showLogin ? 'show' : 'hide' ].join(' ')}>
-                <span className="icon ion-navicon" />
-            </button>
-            <div
-                className={[ 'login', this.showLogin ? 'show' : 'hide' ].join(' ')}
-            >
-              <form className="login-form">
-                <div
-                  dangerouslySetInnerHTML={{__html: this.templates.login ? this.templates.login() : '' }}
-                />
-                <button
-                  className="login-button"
-                  onClick={e => {
-                      e.preventDefault();
-                      const value = document.getElementById('username').value.trim();
-                      if (!value) {
-                          const { notifications } = this.state;
-                          notifications.push({
-                              type: 'info',
-                              'message': 'Your username musn\'t be empty. 😱',
-                          });
-                          this.updateState({ notifications: notifications });
-                      } else {
-                          this.login(value);
-                      }
-
-                      return false;
-                  }}
-                  required
-                >
-                  Login
-                </button>
-              </form>
+          <main className="grid chat-app">
+            <div className="left-chat unit xs-1 m-1-3">
+              <div className="user-list">
+                  <Users
+                      users={users}
+                      template={this.templates.user}
+                  />
+              </div>
             </div>
-            <div className="notification-container">
-              <ul className="notifications">
+            <div className="right-chat unit xs-1 m-2-3">
+              <button className={[ 'user-list-button', !this.showLogin ? 'show' : 'hide' ].join(' ')}>
+                  <span className="icon ion-navicon" />
+              </button>
+              <div
+                  className={[ 'login', this.showLogin ? 'show' : 'hide' ].join(' ')}
+              >
+                <form className="login-form">
+                  <div
+                    dangerouslySetInnerHTML={{__html: this.templates.login ? this.templates.login() : '' }}
+                  />
+                  <button
+                    className="login-button"
+                    onClick={e => {
+                        e.preventDefault();
+                        const value = document.getElementById('username').value.trim();
+                        if (!value) {
+                            const { notifications } = this.state;
+                            notifications.push({
+                                type: 'info',
+                                'message': 'Your username musn\'t be empty. 😱',
+                            });
+                            this.updateState({ notifications: notifications });
+                        } else {
+                            this.login(value);
+                        }
+
+                        return false;
+                    }}
+                    required
+                  >
+                    Login
+                  </button>
+                </form>
+              </div>
+              <div className="notification-container">
+                <ul className="notifications">
+                {
+                  notifications.map((notification, index) => {
+                      //setTimeout(() => {
+                      //    notifications.splice(index, 1);
+                      //    this.updateState({ notifications: notifications });
+                      //}, 2000);
+
+                      return (
+                        <Notification
+                          key={index}
+                          template={this.templates[`${notification.type}-notification`]}
+                          {...notification}
+                        />
+                      );
+                  })
+                }
+                </ul>
+              </div>
+              <ul className="messages">
               {
-                notifications.map((notification, index) => {
-                    setTimeout(() => {
-                        notifications.splice(index, 1);
-                        this.updateState({ notifications: notifications });
-                    }, 2000);
+                messages.map((message, index) => {
+                    if (!this.templates.message) return null;
 
                     return (
-                      <Notification
-                        key={index}
-                        template={this.templates[`${notification.type}-notification`]}
-                        {...notification}
-                      />
+                        <Message
+                            key={index}
+                            template={this.templates.message}
+                            {...message}
+                        />
                     );
                 })
               }
               </ul>
-            </div>
-            <div className="user-list">
-                <Users
-                    users={users}
-                    template={this.templates.user}
-                />
-            </div>
-            <ul className="messages">
-            {
-              messages.map((message, index) => {
-                  if (!this.templates.message) return null;
-
-                  return (
-                      <Message
-                          key={index}
-                          template={this.templates.message}
-                          {...message}
-                      />
-                  );
-              })
-            }
-            </ul>
-            <form
-                id="message-bay"
-                onSubmit={e => {
-                    e.preventDefault();
-                    this.sendMessage(this.refs.m.value.trim());
-                }}
-            >
-              <textarea
-                className="message-container"
-                ref="m"
-                onKeyPress={e => {
-                    if (e.charCode == 13 && e.ctrlKey) {
-                        e.preventDefault();
-                        this.sendMessage(e.target.value);
-                    }
-                }}
-              />
-              <button
-                type="submit"
-                className="message-button"
+              <form
+                  id="message-bay"
+                  onSubmit={e => {
+                      e.preventDefault();
+                      this.sendMessage(this.refs.m.value.trim());
+                  }}
               >
-                Send
-              </button>
-            </form>
+                <textarea
+                  className="message-container"
+                  ref="m"
+                  onKeyPress={e => {
+                      if (e.charCode == 13 && e.ctrlKey) {
+                          e.preventDefault();
+                          this.sendMessage(e.target.value);
+                      }
+                  }}
+                />
+                <button
+                  type="submit"
+                  className="message-button"
+                >
+                  Send
+                </button>
+              </form>
+            </div>
           </main>
         );
     }

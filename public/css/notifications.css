@@ -1,1 +1,1 @@
-@import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");html{box-sizing:border-box}*,*::after,*::before{box-sizing:inherit}.notification{font-style:italic}
+@import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");html{box-sizing:border-box}*,*::after,*::before{box-sizing:inherit}ul{list-style:none}ul li:before{content:''}.user-list-button{display:none}.notification{font-style:italic}.left-chat{background-color:#566683}

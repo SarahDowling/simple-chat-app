@@ -1,0 +1,17 @@
+@import 'bourbon/bourbon';
+@import 'neat/neat';
+@import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+
+ul {
+  list-style: none;
+
+  li {
+    &:before {
+      content: '';
+    }
+  }
+}
+
+.user-list-button {
+  display: none;
+}
