@@ -2,8 +2,10 @@
 
 .notification{
   font-style: italic;
+  background-color: $red;
 }
 
 .left-chat {
-  background-color: $primary;
+  background-color: $secondary;
+  line-height: 1em;
 }
