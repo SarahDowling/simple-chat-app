@@ -1,8 +1,13 @@
 @import "color";
 
+html {
+  font-family: helvetica, sans-serif;
+}
+
 .timestamp {
   color: grey;
-  font-size: 0.5rem;
+    line-height: 1rem;
+    font-size: 0.5rem;
 }
 
 .notification{
@@ -11,6 +16,7 @@
     .timestamp {
       color: $red;
       font-size: 0.5rem;
+      line-height: 1rem;
     }
 }
 
