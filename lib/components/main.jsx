@@ -136,6 +136,7 @@ class MainScreen extends React.Component {
           <main className="grid chat-app">
             <div className="left-chat unit xs-1 m-1-3">
               <div className="user-list">
+                <p className="members-title">Members</p>
                   <Users
                       users={users}
                       template={this.templates.user}

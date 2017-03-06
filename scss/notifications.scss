@@ -1,8 +1,17 @@
 @import "color";
 
+.timestamp {
+  color: grey;
+  font-size: 0.5rem;
+}
+
 .notification{
   font-style: italic;
   color: $red;
+    .timestamp {
+      color: $red;
+      font-size: 0.5rem;
+    }
 }
 
 .left-chat {
